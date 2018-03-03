@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Отели</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../lib/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../lib/css/style.css" rel="stylesheet">
+        <link href="../lib/css/styles.css" rel="stylesheet">
+        <script src="../service/UserService.js"></script>
+        <script src="../service/CategoryService.js"></script>
+        <script src="../service/ContentService.js"></script>
+        <script src="../service/BookingService.js"></script>        
+        <script src="../controllers/UserController.js"></script>
+        <script src="../controllers/CategoryController.js"></script>
+        <script src="../controllers/ContentController.js"></script>
+        <script src="../controllers/BookingController.js"></script>
+        
+        <script>
+            function getCookie(name) {
+                var matches = document.cookie.match(new RegExp(
+                  "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ));
+                return matches ? decodeURIComponent(matches[1]) : undefined;
+                }
+        </script>
+        
+    </head>
+    <body>
+        <div class="Top">
+            <a href="/Project/index.html"><div class="Menu">Главная</div></a>
+            <a href="/Project/view/signIn.html"><div class="Menu_comein">Войти</div></a>
+            <a href="/Project/view/signup.html"><div class="Menu_regist">Регистрация</div></a>
+            <a href="/Project/view/viewbook.html"><div class="View_book">Личный кабинет</div></a>
+        </div>
+        <div class="tabel">
+            <div class="panel panel-default">
+                <div class="panel-heading">Забронированные отели</div>
+                <div id="booking"></div> 
+            </div>
+        </div>
+       
+        
+    <!--  ================================================== -->
+    <script src="../lib/js/jquery.min.js"></script>
+    <script src="../lib/js/bootstrap.min.js"></script>
+    <script>
+    window.onload = function()
+        {
+            var bookingController =  new BookingController();
+            bookingController.getAllBookingView();
+         }
+    </script>     
+    </body>
+</html>
