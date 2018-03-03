@@ -1,16 +1,81 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
+        <title>Отели Омска</title>
+        <meta charset="windows-1251">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="lib/css/bootstrap.min.css" rel="stylesheet">
+        <link href="lib/css/style.css" rel="stylesheet">
+        <link href="lib/css/styles.css" rel="stylesheet">
+        <script src="service/UserService.js"></script>
+        <script src="service/CategoryService.js"></script>
+        <script src="service/ContentService.js"></script>
+        <script src="controllers/UserController.js"></script>
+        <script src="controllers/CategoryController.js"></script>
+        <script src="controllers/ContentController.js"></script>
+        
+        <script>
+            function categoryClick(id)
+            {
+              var contentController =  new ContentController();
+              contentController.getContentByCategoryIdView(id);
+            }
+            function contentClick(id)
+            {
+              document.location.href="/Project/view/content.html?id=" +id;
+            }
+        </script>
     </head>
+
     <body>
-        <div>TODO write content</div>
-    </body>
+        <div class="Top">
+            <a href="/Project/index.html"><div class="Menu">Главная</div></a>
+            <a href="/Project/view/signIn.html"><div class="Menu_comein">Войти</div></a>
+            <a href="/Project/view/signup.html"><div class="Menu_regist">Регистрация</div></a>
+            <a href="/Project/view/viewbook.html"><div class="View_book">Личный кабинет</div></a>
+        </div>
+<!--        <div class="content">
+            <div id="content" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> 
+                <img class="hotel_photo" src="https://s-ec.bstatic.com/images/hotel/max1024x768/585/58532190.jpg">
+            </div>  
+            <div class="discription">
+                <div id=""></div>
+            </div>   
+        </div>  -->
+        <div class="menu_strip">
+            <div class="container">
+                <div class="row">
+                    <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                    <div id="category" class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div> 
+                    <div id="content" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>  
+                    <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                </div>
+            </div>
+        </div>
+            
+    
+    
+    
+    
+        <div class="footer"> 
+            <p1>Developed a website: Koshmuratov N.A. Ombytaev B.Z.<br>
+                All rights reserved | OmGTU ASOIU 2017</p1> 
+        </div>
+
+    <!--  ================================================== -->
+    <script src="lib/js/jquery.min.js"></script>
+    <script src="lib/js/bootstrap.min.js"></script>
+    <script>
+         window.onload = function()
+         {
+              var controller = new CategoryController();
+              controller.getAllCategoryView();
+              
+              var contentController =  new ContentController();
+              contentController.getContentByCategoryIdView(1);
+         }
+        
+    </script>
+    
+  </body>
 </html>
