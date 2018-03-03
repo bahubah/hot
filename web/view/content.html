@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Отели</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../lib/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../lib/css/style.css" rel="stylesheet">
+        <link href="../lib/css/styles.css" rel="stylesheet">
+        <script src="../service/UserService.js"></script>
+        <script src="../service/CategoryService.js"></script>
+        <script src="../service/ContentService.js"></script>
+        <script src="../service/BookingService.js"></script>        
+        <script src="../controllers/UserController.js"></script>
+        <script src="../controllers/CategoryController.js"></script>
+        <script src="../controllers/ContentController.js"></script>
+        <script src="../controllers/BookingController.js"></script>
+        
+        <script>
+            function getCookie(name) {
+                var matches = document.cookie.match(new RegExp(
+                  "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ));
+                return matches ? decodeURIComponent(matches[1]) : undefined;
+                 }
+            function bookingClick()
+            {
+                var url = new URL(document.location.href);
+                var id = url.searchParams.get("id");
+                var contentController =  new ContentController();
+                contentController.getContentByIdView(id);
+                //var content2 =  new ContentController();
+                var contentService = new ContentService();
+                var data = contentService.getContentById(id);
+                
+                var cont = data.title;
+                
+                var Booking = {};
+                Booking.id_user=getCookie("id");
+                Booking.id_content = id;
+                Booking.title1 = cont;
+                var json = JSON.stringify(Booking);
+                var service = new BookingService();
+                service.insertBooking(json);
+                alert("Отель забронирован");
+            }
+        </script>
+        
+    </head>
+
+  <body>
+    <div class="Top">
+        <a href="/Project/index.html"><div class="Menu">Главная</div></a>
+        <a href="/Project/view/signIn.html"><div class="Menu_comein">Войти</div></a>
+        <a href="/Project/view/signup.html"><div class="Menu_regist">Регистрация</div></a>
+    </div>
+   
+    <div class="hotel_discript">  
+        <div class="container">
+            <div class="row">
+                <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                <div id="content" class="col-lg-8 col-md-8 col-sm-8 col-xs-8"></div>  
+                <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+            </div>
+            <div class="booking">  
+                <button type="submit" class="btn btn-primary"  onclick="bookingClick()">Забронировать</button>
+            </div>
+        </div>
+    </div>    
+       
+        
+    <!--  ================================================== -->
+    <script src="../lib/js/jquery.min.js"></script>
+    <script src="../lib/js/bootstrap.min.js"></script>
+    <script>
+         window.onload = function()
+         {
+            var url = new URL(document.location.href);
+            var id= url.searchParams.get("id");
+            var contentController =  new ContentController();
+            contentController.getContentByIdView(id);
+         }
+         
+    </script>
+    
+  </body>
+</html>
